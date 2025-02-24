@@ -62,6 +62,10 @@ header{
   border-bottom: 2px solid #EAEAEA;
 }
 
+.logo{
+  margin-left: 115px;
+}
+
 button{
   border: none;  /* Убираем обводку */
   outline: none; /* Убираем обводку при фокусе */
@@ -145,6 +149,7 @@ button{
 }
 
 .nav-icons{
+  margin-right: 115px;
   display: flex;
   align-items: center;
 }
@@ -418,6 +423,10 @@ button{
   }
 }
 
+.dropdown-container{
+  z-index: 15;
+}
+
 
 /* Скрытый селект */
 .hidden-select {
@@ -495,8 +504,10 @@ button{
     font-family: 'Inter', sans-serif;
     width: 285px;
   }
-  .add-button:hover{
-    background-image: none;
+  @media (hover) {
+    .add-button:hover {
+      background-image: none;
+    }
   }
   .add-button:active{
     background-image: none;
@@ -559,9 +570,15 @@ input[type="number"] {
 .container-button{
   display: flex;
   align-items: center;
-  button:hover, button:active {
+  button:active {
     color: white;
     background-color: black;
+  }
+  @media (hover) {
+    button:hover {
+      color: white;
+      background-color: black;
+    }
   }
 }
 
@@ -650,8 +667,91 @@ input[type="number"] {
   .swiper-button-prev, .swiper-button-next {
     color: #D9D9D9;
   }
-  .swiper-button-prev:hover, .swiper-button-next:hover{
+  .swiper-button-prev:active, .swiper-button-next:active{
     color: #656565;
+  }
+  @media (hover) {
+    .swiper-button-prev:hover, .swiper-button-next:hover {
+      color: #656565;
+    }
+  }
+}
+
+.chooseChosen{
+  padding-top: 71px;
+  padding-bottom: 85px;
+  background-image: url("images/backgroundChoose.png");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  span{
+    margin-left: 60px;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 1.1;
+  }
+  p{
+    margin-left: 60px;
+    margin-right: 60px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 30px;
+  }
+  ul{
+    margin-top: 29px;
+  }
+  li{
+    margin-top: 10px;
+    margin-left: 76px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.42;
+  }
+  .chooseChosen-imgList{
+    margin-bottom: 75px;
+    display: flex;
+    justify-content: center;
+    gap: 29px;
+    margin-top: 46px;
+    img{
+      width: 265px;
+      height: 346px;
+    }
+  }
+  .chooseChosen-slider{
+    margin-top: 47px;
+    position: relative;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  
+    /* Подключение CSS для слайдера */
+    .swiper-container {
+      height: 360px; /* Высота слайдера */
+      overflow: hidden;
+    }
+  
+    .swiper-slide {
+      max-width: 360px; /* Ширина слайда */
+    }
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  
+    /* Настройка навигационных стрелочек */
+    .swiper-button-prev, .swiper-button-next {
+      color: #D9D9D9;
+    }
+    .swiper-button-prev:active, .swiper-button-next:active{
+      color: #656565;
+    }
+    @media (hover) {
+      .swiper-button-prev:hover, .swiper-button-next:hover {
+        color: #656565;
+      }
+    }
   }
 }
 
@@ -666,8 +766,12 @@ input[type="number"] {
   .slider-cart{
     flex: 1;
     .swiper {
-      width: 370px;
-      height: 370px;
+      width: 450px;
+      height: 450px;
+      img{
+        width: 450px;
+        height: 450px;
+      }
       --swiper-pagination-color: #000;
       --swiper-pagination-bottom: none;
     }
@@ -676,8 +780,10 @@ input[type="number"] {
       --swiper-navigation-sides-offset: -50px;
       --swiper-navigation-size: 35px;
     }
-    .swiper-button-prev:hover, .swiper-button-next:hover{
-      color: #656565;
+    @media (hover) {
+      .swiper-button-prev:hover, .swiper-button-next:hover {
+        color: #656565;
+      }
     }
   }
   .chosen-desc{
@@ -759,7 +865,6 @@ input[type="number"] {
 
 .image-line{
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 85px;
   background-image: url(images/image-line.png);
   height: 160px;
   width: 100%;
@@ -799,10 +904,12 @@ input[type="number"] {
 .block-also-like{
   margin-top: 44px;
   border-top: 1px solid #D8D8D8;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.11);
+  padding-bottom: 15px;
 }
 
 .mini-faq{
-  margin-top: 40px;
+  margin-top: 51px;
   display: flex;
   margin-left: 90px;
   margin-right: 90px;
@@ -874,7 +981,7 @@ input[type="number"] {
     justify-content: space-between;
     display: flex;
     height: 100%;
-    
+    width: 1104px;
   }
 
   .footer-menu{
@@ -941,7 +1048,9 @@ input[type="number"] {
         margin-bottom: 16px;
       }
       p{
+        width: 400px;
         opacity: 68%;
+        text-align: center;
       }
     }
   }
@@ -1015,9 +1124,11 @@ input[type="number"] {
       font-family: 'Inter', sans-serif;
 
     }
-    button:hover{
-      background-color: #000;
+    @media (hover) {
+      button:hover {
+        background-color: #000;
       color: white;
+      }
     }
   }
 
@@ -1037,8 +1148,10 @@ input[type="number"] {
     --swiper-navigation-top-offset: calc(100% - 20px);
     z-index: 11;
   }
-  .swiper-button-prev:hover, .swiper-button-next:hover{
-    color: #656565;
+  @media (hover) {
+    .swiper-button-prev:hover, .swiper-button-next:hover {
+      color: #656565;
+    }
   }
 }
 
@@ -1120,8 +1233,13 @@ input[type="number"] {
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
     background-color: #000;
   }
-  button:active, button:hover{
+  button:active{
     background-image: none;
+  }
+  @media (hover) {
+    button:hover {
+      background-image: none;
+    }
   }
 }
 
@@ -1366,9 +1484,15 @@ input[type="number"] {
       justify-content: center;
       color: #000;
     }
-    .arrow-but button:hover, .arrow-but button:active{
+    .arrow-but button:active{
       background-color: #000;
       color: #fff;
+    }
+    @media (hover) {
+      .arrow-but button:hover {
+        background-color: #000;
+        color: #fff;
+      }
     }
     #arrow-next{
       transform: rotate(180deg);
@@ -1866,7 +1990,7 @@ input[type="number"] {
     background-image: url(images/footer2.png);
   }
   .footer-content{
-    
+    width: auto !important;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -1928,6 +2052,7 @@ input[type="number"] {
         width: 217px;
       }
       p{
+        width: auto;
         margin-top: 12px;
         margin-bottom: 46px;
         font-size: 10px;
@@ -1982,8 +2107,10 @@ input[type="number"] {
     --swiper-navigation-sides-offset: -50px;
     --swiper-navigation-size: 28px;
   }
-  .swiper-button-prev:hover, .swiper-button-next:hover{
-    color: #656565;
+  @media (hover) {
+    .swiper-button-prev:hover, .swiper-button-next:hover {
+      color: #656565;
+    }
   }
 }
 
