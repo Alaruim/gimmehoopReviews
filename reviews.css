@@ -30,21 +30,12 @@
 }
 
 hr{
-    margin-top: 31px;
+    margin-top: 10px;
     height: 1px;
     background: rgba(0, 0, 0, 0.14); /* Цвет */
     border: none; /* Убираем стандартную границу */
 }
 
-.cust-say-head{
-    margin-top: 36px;
-}
-.customer-reviews{
-    height: 420px !important;
-}
-.dropdown-container{
-    margin-top: 46px !important;
-}
 
 .review-image-block{
     display: grid;
@@ -75,7 +66,7 @@ hr{
 }
 
 .block-top-reviews{
-    margin-top: 62px !important;
+    margin-top: 0 !important;
     margin-left: 32px !important;
     margin-right: 32px !important;
 }
@@ -101,9 +92,15 @@ hr{
             padding: 13px 45px;
             font-family: 'Inter', sans-serif;
         }
-        button:hover, button:active {
+        button:active {
             color: white;
             background-color: black;
+        }
+        @media (hover) {
+            button:hover {
+                color: white;
+                background-color: black;
+            }
         }
     }
 }
@@ -137,7 +134,6 @@ hr{
     }
     .selected{
         padding: 10px 12px !important;
-        margin-bottom: 50px;
     }
     .block-top-reviews{
         margin: 0 20px !important;
