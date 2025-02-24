@@ -24,56 +24,61 @@ document.querySelectorAll(".dropdown-container").forEach(container => {
 
   
 //////////////////////////////////////////////////////////////////////
-  // Получаем кнопки и поле ввода
-const minusButton = document.querySelector('.minus-button');
-const plusButton = document.querySelector('.plus-button');
-const quantityInput = document.getElementById('quantity');
+// Получаем все контейнеры с кнопками и полями ввода
+const containers = document.querySelectorAll('.container-button');
 
-// Функция для уменьшения значения
-minusButton?.addEventListener('click', function() {
-  let currentValue = parseInt(quantityInput.value);
-  if (currentValue > 0) {
-    quantityInput.value = currentValue - 1; // Уменьшаем на 1, если значение больше 0
+containers.forEach(container => {
+  const minusButton = container.querySelector('.minus-button');
+  const plusButton = container.querySelector('.plus-button');
+  const quantityInput = container.querySelector('#quantity');
+
+  // Проверяем, что все элементы существуют внутри контейнера
+  if (!minusButton || !plusButton || !quantityInput) {
+    console.warn('Не все элементы найдены внутри контейнера', container);
+    return;
   }
+
+  // Функция для уменьшения значения
+  minusButton.addEventListener('click', function () {
+    let currentValue = parseInt(quantityInput.value);
+    if (currentValue > 0) {
+      quantityInput.value = currentValue - 1; // Уменьшаем на 1, если значение больше 0
+    }
+  });
+
+  // Функция для увеличения значения
+  plusButton.addEventListener('click', function () {
+    let currentValue = parseInt(quantityInput.value);
+    if (currentValue < 99) {
+      quantityInput.value = currentValue + 1; // Увеличиваем на 1
+    }
+  });
+
+  // Функция для обработки ввода
+  quantityInput.addEventListener('input', function () {
+    let value = this.value;
+
+    // Убираем незначащие нули и запрещаем минус
+    value = value.replace(/^0+/, ''); // Убираем ведущие нули
+    value = value.replace(/-/g, '');   // Убираем символ минуса
+
+    // Если значение пустое после удаления, ставим 0
+    if (value === '') {
+      value = '0';
+    }
+
+    // Ограничиваем диапазон от 0 до 99
+    let numericValue = parseInt(value);
+    if (numericValue < 0) {
+      this.value = '0';
+    } else if (numericValue > 99) {
+      this.value = '99';
+    } else {
+      this.value = numericValue;
+    }
+  });
 });
 
-// Функция для увеличения значения
-plusButton?.addEventListener('click', function() {
-  let currentValue = parseInt(quantityInput.value);
-  if (currentValue < 99) {
-    quantityInput.value = currentValue + 1; // Увеличиваем на 1
-  }
-});
-
-
-quantityInput?.addEventListener('input', function () {
-  // Получаем введенное значение
-  let value = this.value;
-  
-  // Убираем незначащие нули и запрещаем минус
-  if (value === '0') {
-    return; // Если 0, оставляем как есть
-  }
-  
-  // Преобразуем значение в число
-  value = value.replace(/^0+/, ''); // Убираем все ведущие нули
-  value = value.replace(/-/g, '');   // Убираем символ минуса
-
-  // Если значение пустое после удаления, ставим 0
-  if (value === '') {
-    value = '0';
-  }
-  
-  // Применяем изменения к полю ввода
-  this.value = value;
-
-  // Ограничиваем диапазон от 0 до 99
-  if (parseInt(value) < 0) {
-    this.value = '0';
-  } else if (parseInt(value) > 99) {
-    this.value = '99';
-  }
-});
 
 //////////////////////////////////////////////////////////////////////
 // Инициализация Swiper
@@ -214,7 +219,8 @@ document?.addEventListener('click', function(event) {
 document?.addEventListener("click", function (event) {
   const button = event.target.closest("[data-elem]"); // Проверяем клик на кнопку
   const popup = document.querySelector(".review-popup"); // Окно
-
+  if (!popup || !button) 
+    return;
   // Если клик был на кнопке, то показываем окно
   if (button) {
       const targetSelector = button.getAttribute("data-elem");
@@ -222,7 +228,7 @@ document?.addEventListener("click", function (event) {
       targetElement.classList.toggle("active");
   } 
   // Если клик был не на кнопке и не на окне, то закрываем окно
-  else if (!popup.contains(event.target)) {
+  else if (!popup?.contains(event.target)) {
       popup.classList.remove("active");
   }
 });
